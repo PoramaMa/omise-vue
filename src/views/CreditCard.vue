@@ -33,11 +33,11 @@ export default {
       .querySelector("#checkoutButton")
       .addEventListener("click", (event) => {
         event.preventDefault();
-        this.onPayment();
+        this.omiseCardHandler();
       });
   },
   methods: {
-    onPayment() {
+    omiseCardHandler() {
       OmiseCard.open({
         amount: 12345,
         currency: "THB",

@@ -16,8 +16,10 @@ export default {
   name: "Home",
   data() {
     return {
-      sourceId: "",
-      amount: 100,
+      email: "john.doe@example.com",
+      name: "John Doe",
+      amount: 12345,
+      token: "",
     };
   },
   mounted() {
@@ -39,13 +41,27 @@ export default {
   methods: {
     omiseCardHandler() {
       OmiseCard.open({
-        amount: 12345,
+        amount: this.amount,
         currency: "THB",
         onCreateTokenSuccess: (nonce) => {
-          console.log("nonce :: ", nonce);
+          this.token = nonce;
+          this.onPayment()
         },
         onFormClosed: () => {},
       });
+    },
+
+    async onPayment() {
+      const response = await axios.post(
+        "http://localhost:3000/api/user/omise/payment/card",
+        {
+          email: this.email,
+          name: this.name,
+          amount: this.amount,
+          token: this.token,
+        }
+      );
+      console.log("response :: ",response)
     },
   },
 };

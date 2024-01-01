@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       sourceId: "",
-      amount : 100
+      amount: 100,
     };
   },
   mounted() {
@@ -28,15 +28,15 @@ export default {
           {
             amount: this.amount * 100,
             currency: "THB",
-            phone_number: "0123456789"
+            phone_number: "0123456789",
           },
           async (statusCode, response) => {
             if (statusCode !== 200) {
               return reject(response);
             }
-            console.log("response :: ",response)
+            console.log("response :: ", response);
             this.sourceId = response.id;
-            this.amount = response.amount
+            this.amount = response.amount;
             resolve(response);
           }
         );
@@ -49,7 +49,7 @@ export default {
           source: this.sourceId,
           amount: this.amount,
           call_id: "1234567890",
-          endpoint: "/truemoneywallet"
+          endpoint: "/truemoneywallet",
         }
       );
       window.location.href = response.data.data.redirectUrl;

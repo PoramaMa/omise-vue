@@ -1,13 +1,13 @@
 <template>
   <div class="home">
     <h1>CreditCard</h1>
-    <form name="checkoutForm" method="POST" action="/">
-      <button class="btn btn-success" type="submit" id="checkout-button">
-        pay
-      </button>
+    <form id="checkoutForm">
+      <button id="checkoutButton">pay</button>
     </form>
   </div>
 </template>
+
+<script setup></script>
 
 <script>
 /* eslint-disable */
@@ -21,47 +21,31 @@ export default {
     };
   },
   mounted() {
-    OmiseCard.configureButton("#checkout-button", {
+    OmiseCard.configure({
       publicKey: process.env.VUE_APP_OMISE_PUBLIC_KEY,
-      amount: 100000,
-      frameLabel: "Merchant Name",
+      defaultPaymentMethod: "credit_card",
+      otherPaymentMethod: [],
+      frameLabel: "Slide Me",
       submitLabel: "Pay",
     });
-
     OmiseCard.attach();
+    document
+      .querySelector("#checkoutButton")
+      .addEventListener("click", (event) => {
+        event.preventDefault();
+        this.onPayment();
+      });
   },
   methods: {
-    createSource() {
-      return new Promise((resolve, reject) => {
-        Omise.createSource(
-          "rabbit_linepay",
-          {
-            amount: this.amount * 100,
-            currency: "THB",
-          },
-          async (statusCode, response) => {
-            if (statusCode !== 200) {
-              return reject(response);
-            }
-            console.log("response :: ", response);
-            this.sourceId = response.id;
-            this.amount = response.amount;
-            resolve(response);
-          }
-        );
+    onPayment() {
+      OmiseCard.open({
+        amount: 12345,
+        currency: "THB",
+        onCreateTokenSuccess: (nonce) => {
+          console.log("nonce :: ", nonce);
+        },
+        onFormClosed: () => {},
       });
-    },
-    async onPlaceorder() {
-      const response = await axios.post(
-        "http://localhost:3000/api/user/omise/placeorder",
-        {
-          source: this.sourceId,
-          amount: this.amount,
-          call_id: "1234567890",
-          endpoint: "/",
-        }
-      );
-      window.location.href = response.data.data.redirectUrl;
     },
   },
 };

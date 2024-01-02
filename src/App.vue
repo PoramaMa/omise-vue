@@ -3,7 +3,8 @@
     <router-link to="/">บัตรเครดิต</router-link> |
     <router-link to="/promptpay">พร้อมเพย์</router-link> |
     <router-link to="/rabbit_linepay">แรบบิทไลน์เพย์</router-link> |
-    <router-link to="/truemoneywallet">ทรูมันนี่วอลเล็ท</router-link>
+    <router-link to="/truemoneywallet">ทรูมันนี่วอลเล็ท</router-link> |
+    <router-link to="/MobileBanking">โมบายแบงก์กิ้ง</router-link>
   </nav>
   <router-view />
 </template>

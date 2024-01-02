@@ -53,7 +53,7 @@ export default {
 
     async onPayment() {
       const response = await axios.post(
-        "http://localhost:3000/api/user/omise/payment/card",
+        "http://localhost:3000/api/user/omise/payment",
         {
           email: this.email,
           name: this.name,

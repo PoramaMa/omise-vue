@@ -2,7 +2,7 @@
   <div class="home">
     <h1>CreditCard</h1>
     <form id="checkoutForm">
-      <button id="checkoutButton">pay</button>
+      <button id="checkoutButton">check out</button>
     </form>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     return {
       email: "john.doe@example.com",
       name: "John Doe",
-      amount: 12345,
+      amount: 12000,
       token: "",
     };
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Rabbit LINE Pay</h1>
+    <h1>ธนาคารกสิกรไทย (K PLUS)</h1>
     <button class="btn btn-success" @click="onPlaceorder">pay</button>
   </div>
 </template>
@@ -9,7 +9,7 @@
 /* eslint-disable */
 import axios from "axios";
 export default {
-  name: "Home",
+  name: "kbank",
   data() {
     return {
       sourceId: "",
@@ -24,10 +24,11 @@ export default {
     createSource() {
       return new Promise((resolve, reject) => {
         Omise.createSource(
-          "rabbit_linepay",
+          "mobile_banking_kbank",
           {
             amount: this.amount * 100,
             currency: "THB",
+            platform_type: "IOS",
           },
           async (statusCode, response) => {
             if (statusCode !== 200) {
@@ -48,10 +49,11 @@ export default {
           source: this.sourceId,
           amount: this.amount,
           call_id: "1234567890",
-          endpoint: "/rabbit_linepay",
+          endpoint: "/truemoneywallet",
         }
       );
       window.location.href = response.data.data.redirectUrl;
+      console.log("response.data.: ", response.data);
     },
   },
 };

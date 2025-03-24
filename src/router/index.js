@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import CreditCard from "../views/CreditCard.vue";
+import MobileBanking from "../views/MobileBanking.vue";
+import kbank from "../views/MobileBankingk/Kbank.vue";
 import rabbit_linepay from "../views/rabbit_linepay.vue";
 import TruemoneyWallet from "../views/TruemoneyWallet.vue";
-import MobileBanking from "../views/MobileBanking.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/MobileBanking",
     name: "MobileBanking",
     component: MobileBanking,
+  },
+  {
+    path: "/MobileBanking/kbank",
+    name: "kbank",
+    component: kbank,
   },
   {
     path: "/promptpay",

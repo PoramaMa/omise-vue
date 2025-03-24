@@ -43,7 +43,7 @@ export default {
     },
     async onPlaceorder() {
       const response = await axios.post(
-        "http://localhost:3000/api/user/omise/placeorder",
+        "http://localhost:3000/api/user/omise/test/placeorder",
         {
           source: this.sourceId,
           amount: this.amount,

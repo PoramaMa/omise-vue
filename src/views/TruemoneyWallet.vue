@@ -44,7 +44,7 @@ export default {
     },
     async onPlaceorder() {
       const response = await axios.post(
-        "http://localhost:3000/api/user/omise/placeorder",
+        "http://localhost:3000/api/user/omise/test/placeorder",
         {
           source: this.sourceId,
           amount: this.amount,
@@ -53,6 +53,7 @@ export default {
         }
       );
       window.location.href = response.data.data.redirectUrl;
+      console.log("response.data.: ", response.data);
     },
   },
 };

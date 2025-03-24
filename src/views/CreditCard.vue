@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <h1>CreditCard</h1>
-    <form id="checkoutForm">
-      <button id="checkoutButton">check out</button>
-    </form>
+    <button id="checkoutButton" class="btn btn-success">check out</button>
   </div>
 </template>
 
@@ -45,7 +43,7 @@ export default {
         currency: "THB",
         onCreateTokenSuccess: (nonce) => {
           this.token = nonce;
-          this.onPayment()
+          this.onPayment();
         },
         onFormClosed: () => {},
       });
@@ -61,7 +59,7 @@ export default {
           token: this.token,
         }
       );
-      console.log("response :: ",response)
+      console.log("response :: ", response);
     },
   },
 };
